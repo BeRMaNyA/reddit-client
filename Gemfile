@@ -13,9 +13,11 @@ gem 'bcrypt',     '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
+  gem 'listen'
   gem 'byebug'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
+
