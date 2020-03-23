@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password:
+
+development:
+  <<: *default
+  database: reddit_client_development
+
+test:
+  <<: *default
+  database: reddit_client_test
+
+production:
+  <<: *default
+  database: reddit_client_production
+  password: <%= ENV['REDDIT_CLIENT_DATABASE_PASSWORD'] %>
