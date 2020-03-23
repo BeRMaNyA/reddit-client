@@ -1,6 +1,10 @@
 import * as React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import './styles'
+
+const Login = () => (
+  <h1>Login</h1>
+)
 
 class App extends React.Component {
   constructor(props) {
@@ -9,9 +13,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <h1>
-        Hello from React!
-      </h1>
+      <Switch>
+        <Route exact path='/(login)?' component={Login} />
+      </Switch>
     )
   }
 }
