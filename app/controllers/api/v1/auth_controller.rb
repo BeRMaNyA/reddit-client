@@ -13,7 +13,7 @@ class Api::V1::AuthController < Api::ApiController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
 
-      render json: user
+      render json: user.to_h
     else
       render json: { error: "Invalid credentials" }, status: 401
     end

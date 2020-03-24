@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
       id:         id,
       name:       name,
       email:      email,
-      auth_token: auth_token,
       created_at: created_at
     }
   end
