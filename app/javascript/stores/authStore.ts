@@ -66,6 +66,7 @@ class AuthStore {
         this.error = undefined;
       })
       .catch((error) => {
+        console.log(error);
         this.error = error.response.data.error;
       })
       .then(() => {

@@ -40,6 +40,10 @@ class Signup extends React.Component<SignupProps> {
       <form className="Form" ref={this.formRef} onSubmit={this.signup} noValidate>
         <h1>Signup</h1>
 
+        { error &&
+          <div className="Form__error">{ error }</div>
+        }
+
         <div className="Form__item"> 
           <input type="text" name="name" placeholder="Name" />
         </div>

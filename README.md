@@ -8,7 +8,7 @@ A reddit client built with React & Ruby on Rails
     * [Table of Contents](#table-of-contents)
     * [Dependencies](#dependencies)
     * [Running the app](#running-the-app)
-    * [Features](#features)
+    * [TODO](#todo)
 
 ## Dependencies
 
@@ -42,6 +42,7 @@ If you are running the app for the first time then:
 $ cp config/database{.yml.sample,.yml}
 $ vi config/database.yml # edit credentials
 $ rake db:create:all
+$ rake db:migrate
 ```
 
 And lastly:
@@ -51,9 +52,11 @@ bin/webpack-dev-server &
 rails s -b 0.0.0.0
 ```
 
-### Features
+### TODO
 
-- [ ] Sign Up / In
+- [x] Sign Up
+- [x] Sign In
+- [x] Logout
 - [ ] List TOP POSTs
 - [ ] Pagination support
 - [ ] Show TOP POST

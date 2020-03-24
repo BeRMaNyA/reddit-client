@@ -29,7 +29,7 @@ class Api::V1::AuthController < Api::ApiController
 
       render json: user.to_h
     else
-      render json: { error: user.errors.first.to_s }
+      render json: { error: user.errors.full_messages.first.to_s }, status: 422
     end
   end
 

@@ -7,14 +7,9 @@ import Login from './Login'
 import Signup from './Signup'
 import Logout from './Logout'
 import Header from './Header'
+import Posts from './Posts'
 
 import '../styles'
-
-const Home = (props) => {
-  return (
-    <div>Hello </div>
-  )
-};
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +26,7 @@ class App extends React.Component {
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
             <PrivateRoute path='/logout' component={Logout} />
-            <PrivateRoute path='/' component={Home} />
+            <PrivateRoute path='/' component={Posts} />
           </Switch>
         </section>
 
