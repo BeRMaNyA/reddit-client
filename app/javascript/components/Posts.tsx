@@ -26,9 +26,9 @@ class Posts extends React.Component<PostsProps> {
     const { userStore, postStore } = this.props;
     const { currentUser } = userStore;
 
-    const topPosts = postStore.posts.map((post) =>
-      <Post post={post} />
-    );
+    const topPosts = postStore.posts.map((post) => {
+      return <Post key={post.data.id} post={post} />
+    });
 
     return (
       <div>

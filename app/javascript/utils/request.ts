@@ -37,7 +37,13 @@ class Auth {
 class Posts {
   static list() {
     delete axios.defaults.headers.common['X-CSRF-TOKEN'];
-    return axios.get('https://www.reddit.com/top.json');
+
+    var params = {
+      limit: 50,
+      raw_json: 1
+    };
+
+    return axios.get('https://www.reddit.com/top.json', { params: params });
   }
 }
 

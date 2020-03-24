@@ -57,7 +57,7 @@ rails s -b 0.0.0.0
 - [x] Sign Up
 - [x] Sign In
 - [x] Logout
-- [ ] List TOP POSTs
+- [x] List TOP POSTs
 - [ ] Pagination support
 - [ ] Show TOP POST
 - [ ] Saving pictures in the picture gallery

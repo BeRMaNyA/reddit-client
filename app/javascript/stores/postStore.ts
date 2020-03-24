@@ -1,18 +1,20 @@
 import { observable, action } from 'mobx'
 import { Posts } from 'utils/request'
 
+interface Post {
+  data: any
+}
+
 class PostStore {
-  @observable posts: [] = []; 
+  @observable posts: Post[] = []; 
 
   constructor() {
     Posts.list().then((result) => {
       this.setPosts(result.data.data.children);
-
     });
   }
 
   @action setPosts(posts) {
-    console.log(posts);
     this.posts = posts;
   }
 }
