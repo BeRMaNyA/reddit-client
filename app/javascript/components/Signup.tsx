@@ -11,6 +11,7 @@ interface SignupProps {
 
 @inject('authStore')
 @observer
+
 class Signup extends React.Component<SignupProps> {
   private formRef;
 

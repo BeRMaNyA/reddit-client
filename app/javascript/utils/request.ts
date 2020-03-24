@@ -34,4 +34,11 @@ class Auth {
   }
 };
 
-export { Auth, axios }
+class Posts {
+  static list() {
+    delete axios.defaults.headers.common['X-CSRF-TOKEN'];
+    return axios.get('https://www.reddit.com/top.json');
+  }
+}
+
+export { Auth, Posts, axios }

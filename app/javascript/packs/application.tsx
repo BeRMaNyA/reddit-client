@@ -6,6 +6,7 @@ import { Provider } from 'mobx-react';
 
 import authStore from '../stores/authStore';
 import userStore from '../stores/userStore';
+import postStore from '../stores/postStore';
 
 import App from '../components/App'
 
@@ -20,6 +21,7 @@ declare module "react" {
 const stores = {
   authStore,
   userStore,
+  postStore
 };
 
 ReactDOM.render(

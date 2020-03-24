@@ -4,12 +4,17 @@ import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
 import userStore from '../stores/userStore' 
+import postStore from '../stores/postStore'
+
+import Post from './Post'
 
 interface PostsProps {
   userStore?: typeof userStore
+  postStore?: typeof postStore
 }
 
 @inject('userStore')
+@inject('postStore')
 @observer
 
 class Posts extends React.Component<PostsProps> {
@@ -18,12 +23,20 @@ class Posts extends React.Component<PostsProps> {
   }
 
   render() {
-    const { userStore } = this.props;
+    const { userStore, postStore } = this.props;
     const { currentUser } = userStore;
+
+    const topPosts = postStore.posts.map((post) =>
+      <Post post={post} />
+    );
 
     return (
       <div>
         Hello {currentUser.name}
+
+        <div className="posts">
+          {topPosts}
+        </div>
       </div>
     )
   }
