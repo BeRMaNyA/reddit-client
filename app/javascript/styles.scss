@@ -44,7 +44,7 @@ input {
   padding: 20px 0;
 }
 
-.Login {
+.Form {
   border-radius: 5px 5px 5px 5px;
   background: #fbfbfb;
   padding: 15px 10px;
@@ -54,11 +54,11 @@ input {
   text-align: center;
   margin: 14% auto;
 
-  .Login__item {
+  .Form__item {
     margin-bottom: 15px;
   }
 
-  .Login__btn {
+  .Form__btn {
     border: 0;
     background: #515680;
     padding: 10px;
@@ -69,7 +69,7 @@ input {
     font-size: 17px;
   }
 
-  .Login__error {
+  .Form__error {
     color: darkred;
     margin-bottom: 15px;
   }

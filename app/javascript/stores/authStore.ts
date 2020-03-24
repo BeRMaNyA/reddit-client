@@ -3,6 +3,7 @@ import { Auth } from 'utils/request'
 import userStore from './userStore'
 
 interface Values {
+  name?: String
   email: String
   password: String
 }
@@ -55,8 +56,21 @@ class AuthStore {
     this.loggedIn = true;
   }
 
-  @action signUp() {
+  @action signup(name: string, email: string, password: string) {
     this.inProgress = true;
+
+    Auth.signup(name, email, password)
+      .then((result) => {
+        userStore.setCurrentUser(result.data);
+        this.loggedIn = true;
+        this.error = undefined;
+      })
+      .catch((error) => {
+        this.error = error.response.data.error;
+      })
+      .then(() => {
+        this.inProgress = false;
+      });
   }
 
   @action logout() {

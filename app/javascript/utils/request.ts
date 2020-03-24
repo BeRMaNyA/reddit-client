@@ -14,6 +14,17 @@ class Auth {
     });
   }
 
+  static signup(name: String, email: String, password: String) {
+    return axios.post('/api/v1/auth/signup', {
+      user: {
+        name: name,
+        email: email,
+        password: password,
+        password_confirmation: password
+      }
+    });
+  }
+
   static me() {
     return axios.get('/api/v1/auth/me');
   }
