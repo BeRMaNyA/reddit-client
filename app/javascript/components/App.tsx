@@ -4,11 +4,12 @@ import { Switch, Route, Link } from 'react-router-dom'
 
 import PrivateRoute from './PrivateRoute'
 import Login from './Login'
+import Logout from './Logout'
 import Header from './Header'
 
 import '../styles'
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div>Hello world</div>
   )
@@ -27,6 +28,7 @@ class App extends React.Component {
         <section className="Content" bp="container">
           <Switch>
             <Route path='/login' component={Login} />
+            <PrivateRoute path='/logout' component={Logout} />
             <PrivateRoute path='/' component={Home} />
           </Switch>
         </section>

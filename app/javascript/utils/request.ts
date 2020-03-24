@@ -17,6 +17,10 @@ class Auth {
   static me() {
     return axios.get('/api/v1/auth/me');
   }
+
+  static logout() {
+    return axios.delete('/api/v1/auth/logout');
+  }
 };
 
 export { Auth, axios }

@@ -4,17 +4,12 @@ import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
 import userStore from '../stores/userStore'
-
-interface PrivateRouteProps {
-  userStore?: typeof userStore
-  path: String
-  component: React.FC
-}
+import { RouteProps } from 'react-router';
 
 @inject('userStore')
 @observer
 
-class PrivateRoute extends React.Component<PrivateRouteProps> {
+class PrivateRoute extends React.Component<RouteProps> {
   constructor(props) {
     super(props);
   }

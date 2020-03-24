@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react'
 
 import userStore from '../stores/userStore'
 
-import { Switch, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface HeaderProps {
   userStore?: typeof userStore
@@ -27,14 +27,13 @@ class Header extends React.Component<HeaderProps>{
 
           <nav>
             { userStore.currentUser ? <UserNav />
-              : <PublicNav /> }
+                                    : <PublicNav /> }
           </nav>
         </div>
       </header>
     )
   }
 }
-
 
 function PublicNav() {
   return (

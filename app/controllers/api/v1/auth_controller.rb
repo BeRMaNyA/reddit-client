@@ -36,7 +36,7 @@ class Api::V1::AuthController < Api::ApiController
   def logout
     session[:user_id] = nil
 
-    render nothing: true
+    render json: {}
   end
 
   private

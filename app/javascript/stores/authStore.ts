@@ -23,7 +23,8 @@ class AuthStore {
 
   constructor() {
     Auth.me().then((result) => {
-      this.setUser(result.data);
+      if (result.data)
+        this.setUser(result.data);
     })
   }
 
@@ -60,6 +61,7 @@ class AuthStore {
 
   @action logout() {
     this.loggedIn = false;
+    Auth.logout().then(() => userStore.forgetUser());
   }
 }
 
