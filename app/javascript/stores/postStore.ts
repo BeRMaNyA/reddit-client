@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { Posts } from 'utils/request'
+import  Posts from 'services/posts'
 
 interface Post {
   data: any

@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { Auth } from 'utils/request'
+import Auth from 'services/auth'
 import userStore from './userStore'
 
 interface Values {
@@ -66,7 +66,6 @@ class AuthStore {
         this.error = undefined;
       })
       .catch((error) => {
-        console.log(error);
         this.error = error.response.data.error;
       })
       .then(() => {

@@ -19,7 +19,7 @@ class Login extends React.Component<LoginProps> {
     super(props);
 
     this.formRef = React.createRef();
-    this.login = this.login.bind(this)
+    this.login = this.login.bind(this);
   }
 
   login(event: React.FormEvent) {
