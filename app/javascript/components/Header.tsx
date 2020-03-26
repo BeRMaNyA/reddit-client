@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { inject, observer } from 'mobx-react'
 
-import userStore from '../stores/userStore'
+import userStore from 'stores/userStore'
 
 import { Link } from 'react-router-dom'
 

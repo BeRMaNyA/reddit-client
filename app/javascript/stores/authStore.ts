@@ -2,12 +2,6 @@ import { observable, action } from 'mobx'
 import Auth from 'services/auth'
 import userStore from './userStore'
 
-interface Values {
-  name?: string
-  email: string
-  password: string
-}
-
 interface Error {
   error: string
 }
@@ -16,11 +10,6 @@ class AuthStore {
   @observable inProgress: boolean = false;
   @observable loggedIn: boolean = false;
   @observable error: string;
-
-  @observable values: Values = {
-    email: '',
-    password: '',
-  };
 
   constructor() {
     Auth.me().then((result) => {

@@ -4,8 +4,8 @@ import * as moment from 'moment'
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
-import postStore from '../stores/postStore' 
-import { PostT } from '../types'
+import postStore from 'stores/postStore' 
+import { PostT } from 'types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -57,16 +57,12 @@ class Post extends React.Component<PostProps> {
     switch (thumbnail) {
       case 'self':
         return 'https://www.reddit.com/static/self_default2.png';
-        break;
       case 'default':
         return 'https://www.reddit.com/static/noimage.png';
-        break;
       case 'nsfw':
         return 'https://www.reddit.com/static/nsfw2.png';
-        break;
       default:
         return thumbnail;
-        break;
     }
   }
 

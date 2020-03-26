@@ -3,8 +3,8 @@ import * as React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
-import userStore from '../stores/userStore' 
-import postStore from '../stores/postStore'
+import userStore from 'stores/userStore' 
+import postStore from 'stores/postStore'
 
 import Post from './Post'
 

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
-import authStore from '../stores/authStore'
+import authStore from 'stores/authStore'
 
 interface LoginProps {
   authStore?: typeof authStore

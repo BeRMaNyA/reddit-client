@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { inject, observer } from 'mobx-react'
 
-import authStore from '../stores/authStore'
+import authStore from 'stores/authStore'
 
 import { Redirect } from 'react-router-dom'
 
