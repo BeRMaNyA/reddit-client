@@ -11,9 +11,20 @@ import Posts from './Posts'
 
 import '../styles'
 
-class App extends React.Component {
+interface AppProps {}
+
+interface AppState {
+  fixedFooter: boolean
+}
+
+class App extends React.Component<AppProps, AppState> {
   constructor(props) {
     super(props);
+    this.state = { fixedFooter: true };
+  }
+
+  setFixedClass(fixed: boolean) {
+    this.setState({ fixedFooter: fixed });
   }
 
   render() {
@@ -26,11 +37,11 @@ class App extends React.Component {
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
             <PrivateRoute path='/logout' component={Logout} />
-            <PrivateRoute path='/' component={Posts} />
+            <PrivateRoute path='/' component={Posts} setFixedClass={this.setFixedClass.bind(this) } />
           </Switch>
         </section>
 
-        <footer>
+        <footer className={ this.state.fixedFooter ? 'fixed' : null }>
           Made with love by Berna
         </footer>
       </>

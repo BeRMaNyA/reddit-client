@@ -130,8 +130,11 @@ footer {
   background: #333;
   padding: 20px;
   text-align: center;
-  position: fixed;
   width: 100%;
   bottom: 0;
   color: #ccc;
+
+  &.fixed {
+    position: fixed;
+  }
 }

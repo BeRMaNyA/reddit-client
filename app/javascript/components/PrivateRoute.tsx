@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
-import userStore from 'stores/userStore'
+import userStore from '../stores/userStore'
 import { RouteProps } from 'react-router';
 
 @inject('userStore')
@@ -15,10 +15,10 @@ class PrivateRoute extends React.Component<RouteProps> {
   }
 
   render() {
-    const { userStore, ...restProps } = this.props;
+    const { userStore, component:Component, ...restProps } = this.props;
 
     if (userStore.currentUser)
-      return <Route {...restProps} />;
+      return <Route render={(props) => <Component {...restProps} />} />;
 
     return <Redirect to="/login" />
   }

@@ -14,6 +14,7 @@ import "react-image-lightbox/style.css";
 interface PostsProps {
   userStore: typeof userStore
   postStore: typeof postStore
+  setFixedClass: Function
 }
 
 interface PostsState {
@@ -36,7 +37,13 @@ class Posts extends React.Component<PostsProps, PostsState> {
   }
 
   componentDidMount() {
-    this.props.postStore.loadPosts();
+    this.props.postStore.loadPosts().then(() => {
+      this.props.setFixedClass(false);
+    })
+  }
+
+  componentWillUnmount() {
+    this.props.setFixedClass(true);
   }
 
   openViewer(img: string) {

@@ -9,7 +9,7 @@ class PostStore {
   @action loadPosts() {
     this.loading = true;
 
-    Posts.list()
+    return Posts.list()
       .then((result) => {
         this.posts = this.decorate(result.data.data.children)
       })
