@@ -104,13 +104,17 @@ input {
 }
 
 .Post {
-  padding-bottom: 5px;
+  padding: 10px 0;
   border-bottom: 1px solid #eee;
+
+  h4 { margin: 0; }
+  .created { color: #888; }
+  small { font-size: 12.5px; }
 }
 
 footer {
   background: #333;
-  padding: 30px;
+  padding: 20px;
   text-align: center;
   position: fixed;
   width: 100%;

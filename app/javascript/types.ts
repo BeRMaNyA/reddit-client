@@ -12,7 +12,7 @@ export type Image = {
 
 export type Preview = {
   enabled: Boolean
-  images: Image[] | Null
+  images: Image[] | null
 }
 
 export type Post = {

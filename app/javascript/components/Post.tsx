@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as moment from 'moment'
 
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
@@ -22,28 +23,22 @@ class Post extends React.Component<PostProps> {
     const { post } = this.props;
 
     return (
-      <div className="Post" bp="grid vertical-center 8--max">
+      <div className="Post" bp="grid vertical-start 8--max">
         <div className="thumbnail" bp="1">
           <img width="100" src={ this.getThumbnail(post) } />
+          <small className="author">{ post.author }</small>
+          <br />
+          <small className="created">{ this.formatDate(post.created) }</small>
         </div>
 
-        <div className="media-body" bp="8">
+        <div className="media-body" bp="10">
           <div className="text-right">
             <span title="dismiss">
               <i className="fa fa-times"></i>
             </span>
           </div>
 
-          <h4>
-            { post.title }
-          </h4>	
-
-          <p className="text-right">
-            { post.author }
-
-            <span>{ post.num_comments } <i className="fa fa-comments"></i></span>
-            <span>{post.created}</span>
-          </p>
+          <h4>{ post.title }</h4>	
         </div>
       </div>
     )
@@ -66,6 +61,11 @@ class Post extends React.Component<PostProps> {
         return post.thumbnail;
         break;
     }
+  }
+
+  formatDate(created: number) {
+    return moment.unix(created).format('MMMM Do YYYY');
+
   }
 }
 

@@ -32,8 +32,6 @@ class Posts extends React.Component<PostsProps> {
 
     return (
       <div className="Posts">
-        <p>Hello {currentUser.name}</p>
-
         { postStore.loading && 'Loading Posts...' }
 
         {
