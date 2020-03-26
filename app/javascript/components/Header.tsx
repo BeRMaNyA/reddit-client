@@ -22,7 +22,7 @@ class Header extends React.Component<HeaderProps>{
 
     return (
       <header className="Header">
-        <div bp="container">
+        <div className="clearfix" bp="container">
           <h1>Reddit Client</h1>
 
           <nav>

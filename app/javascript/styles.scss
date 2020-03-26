@@ -19,20 +19,35 @@ input {
   width: 90%;
 }
 
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.clearfix { display: inline-block; }
+
+* html .clearfix { height: 1%; }
+
+.clearfix { display: block; }
+
 .Header {
   background-color: white;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
-  padding: 8px 80px;
+  padding: 8px 30px;
 
   h1 {
     font-size: 20px;
-    width: 80%;
-    display: inline-block;
     font-weight: 400;
+    float: left;
   }
 
   nav {
-    display: inline-block;
+    float: right;
+    padding-top: 17px;
   
     a {
       padding-right: 14px;
@@ -83,9 +98,19 @@ input {
   }
 }
 
+.Posts {
+  padding-left: 8px;
+  margin-top: 10px;
+}
+
+.Post {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
 footer {
   background: #333;
-  padding: 5%;
+  padding: 30px;
   text-align: center;
   position: fixed;
   width: 100%;

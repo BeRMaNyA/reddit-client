@@ -22,21 +22,25 @@ class Posts extends React.Component<PostsProps> {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.postStore.loadPosts();
+  }
+
   render() {
     const { userStore, postStore } = this.props;
     const { currentUser } = userStore;
 
-    const topPosts = postStore.posts.map((post) => {
-      return <Post key={post.data.id} post={post} />
-    });
-
     return (
-      <div>
-        Hello {currentUser.name}
+      <div className="Posts">
+        <p>Hello {currentUser.name}</p>
 
-        <div className="posts">
-          {topPosts}
-        </div>
+        { postStore.loading && 'Loading Posts...' }
+
+        {
+          postStore.posts.map((post, index) =>
+            <Post key={index} post={post} />
+          )
+        }
       </div>
     )
   }
