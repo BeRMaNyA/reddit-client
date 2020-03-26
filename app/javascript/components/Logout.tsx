@@ -25,9 +25,9 @@ class Logout extends React.Component<LogoutProps>{
     const { authStore } = this.props;
 
     if (!authStore.loggedIn)
-      return <Redirect to="/" />
+      return <Redirect to="/login" />
 
-    return <div></div>
+    return <div>Logging out...</div>
   }
 }
 

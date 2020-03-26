@@ -25,31 +25,35 @@ class Header extends React.Component<HeaderProps>{
         <div className="clearfix" bp="container">
           <h1>Reddit Client</h1>
           <nav>
-            { userStore.currentUser ? <UserNav />
-                                    : <PublicNav /> }
+            { userStore.currentUser ? this.userNav
+                                    : this.publicNav
+            }
           </nav>
         </div>
       </header>
     )
   }
+
+  private
+
+  get publicNav() {
+    return (
+      <>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
+      </>
+    );
+  }
+
+  get userNav() {
+    return (
+      <>
+        <Link to="/">Home</Link>
+        <Link to="/gallery">Gallery</Link>
+        <Link to="/logout">Logout</Link>
+      </>
+    )
+  }
 }
 
-function PublicNav() {
-  return (
-    <>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">Sign Up</Link>
-    </>
-  )
-}
-
-function UserNav() {
-  return (
-    <>
-      <Link to="/">Home</Link>
-      <Link to="/gallery">Gallery</Link>
-      <Link to="/logout">Logout</Link>
-    </>
-  )
-}
 export default Header;

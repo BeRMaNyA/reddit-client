@@ -23,8 +23,7 @@ class AuthStore {
 
     Auth.login(email, password)
       .then((result) => {
-        userStore.setCurrentUser(result.data);
-        this.loggedIn = true;
+        this.setUser(result.data)
         this.error = undefined;
       })
       .catch((error) => {
@@ -35,19 +34,13 @@ class AuthStore {
       });
   }
 
-  @action setUser(user) {
-    userStore.setCurrentUser(user);
-    this.loggedIn = true;
-  }
-
   @action signup(name: string, email: string, password: string) {
     this.inProgress = true;
 
     Auth.signup(name, email, password)
       .then((result) => {
-        userStore.setCurrentUser(result.data);
-        this.loggedIn = true;
         this.error = undefined;
+        this.setUser(result.data);
       })
       .catch((error) => {
         this.error = error.response.data.error;
@@ -64,6 +57,13 @@ class AuthStore {
 
   @action clearError() {
     this.error = undefined;
+  }
+
+  private
+
+  setUser(user) {
+    userStore.setCurrentUser(user);
+    this.loggedIn = true;
   }
 }
 
