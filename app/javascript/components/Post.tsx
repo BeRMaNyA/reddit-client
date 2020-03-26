@@ -7,9 +7,13 @@ import { inject, observer } from 'mobx-react'
 import postStore from '../stores/postStore' 
 import { PostT } from '../types'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
 interface PostProps {
   postStore?: typeof postStore
   post: PostT
+  openViewer: Function
 }
 
 @inject('postStore')
@@ -21,11 +25,7 @@ class Post extends React.Component<PostProps> {
   }
 
   viewImage(post: PostT) {
-    console.log(post.preview);
-
-    alert(
-      decodeURI(post.preview)
-    );
+    this.props.openViewer(decodeURI(post.preview));
   }
 
   render() {
@@ -41,11 +41,9 @@ class Post extends React.Component<PostProps> {
         </div>
 
         <div className="media-body" bp="10">
-          <div className="text-right">
-            <span title="dismiss">
-              <i className="fa fa-times"></i>
-            </span>
-          </div>
+          <span className="dismiss">
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
 
           <h4>{ post.title }</h4>	
         </div>

@@ -24,7 +24,6 @@ class Header extends React.Component<HeaderProps>{
       <header className="Header">
         <div className="clearfix" bp="container">
           <h1>Reddit Client</h1>
-
           <nav>
             { userStore.currentUser ? <UserNav />
                                     : <PublicNav /> }

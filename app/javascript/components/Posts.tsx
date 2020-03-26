@@ -8,22 +8,46 @@ import postStore from '../stores/postStore'
 
 import Post from './Post'
 
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
+
 interface PostsProps {
-  userStore?: typeof userStore
-  postStore?: typeof postStore
+  userStore: typeof userStore
+  postStore: typeof postStore
+}
+
+interface PostsState {
+  imgSrc: string | null
+  isOpen: boolean
 }
 
 @inject('userStore')
 @inject('postStore')
 @observer
 
-class Posts extends React.Component<PostsProps> {
+class Posts extends React.Component<PostsProps, PostsState> {
   constructor(props) {
     super(props);
+
+    this.state = {
+      imgSrc: null,
+      isOpen: false
+    }
   }
 
   componentDidMount() {
     this.props.postStore.loadPosts();
+  }
+
+  openViewer(img: string) {
+    this.setState({
+      imgSrc: img,
+      isOpen: true
+    })
+  }
+
+  closeViewer() {
+    this.setState({ isOpen: false })
   }
 
   render() {
@@ -31,15 +55,24 @@ class Posts extends React.Component<PostsProps> {
     const { currentUser } = userStore;
 
     return (
-      <div className="Posts">
-        { postStore.loading && 'Loading Posts...' }
+      <>
+        <div className="Posts">
+          { postStore.loading && 'Loading Posts...' }
 
-        {
-          postStore.posts.map((post, index) =>
-            <Post key={index} post={post} />
-          )
+          { postStore.posts.map((post, index) =>
+              <Post key={index} post={post} openViewer={this.openViewer.bind(this)} />
+            )
+          }
+        </div>
+
+        { this.state.isOpen &&
+          <Lightbox
+              mainSrc={this.state.imgSrc}
+              onCloseRequest={() => this.closeViewer() }
+          />
         }
-      </div>
+
+      </>
     )
   }
 }
