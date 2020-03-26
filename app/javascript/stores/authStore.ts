@@ -29,15 +29,10 @@ class AuthStore {
     })
   }
 
-  @action set(email: string, password: string) {
-    this.values.email = email;
-    this.values.password = password;
-  }
-
-  @action login() {
+  @action login(email: string, password: string) {
     this.inProgress = true;
 
-    Auth.login(this.values.email, this.values.password)
+    Auth.login(email, password)
       .then((result) => {
         userStore.setCurrentUser(result.data);
         this.loggedIn = true;
@@ -76,6 +71,10 @@ class AuthStore {
   @action logout() {
     this.loggedIn = false;
     Auth.logout().then(() => userStore.forgetUser());
+  }
+
+  @action clearError() {
+    this.error = undefined;
   }
 }
 

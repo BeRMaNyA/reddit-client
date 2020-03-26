@@ -22,6 +22,10 @@ class Signup extends React.Component<SignupProps> {
     this.signup = this.signup.bind(this)
   }
 
+  componentDidMount() {
+    this.props.authStore.clearError();
+  }
+
   signup(event: React.FormEvent) {
     const { name, email, password } = this.formRef.current;
 

@@ -25,10 +25,13 @@ class Login extends React.Component<LoginProps> {
   login(event: React.FormEvent) {
     const { email, password } = this.formRef.current;
 
-    this.props.authStore.set(email.value, password.value);
-    this.props.authStore.login();
+    this.props.authStore.login(email.value, password.value);
 
     event.preventDefault();
+  }
+
+  componentDidMount() {
+    this.props.authStore.clearError();
   }
 
   render() {
