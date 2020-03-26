@@ -3,7 +3,7 @@ import { User } from 'types'
  
 class UserStore {
   @observable currentUser: User | null;
-  @observable loadingUser: Boolean;
+  @observable loadingUser: boolean;
 
   @action setCurrentUser(user) {
     this.currentUser = user;

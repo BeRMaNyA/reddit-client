@@ -1,35 +1,24 @@
 export type User = {
-  id: Number
-  name: String
-  email: String
-  created_at: String
-}
+  id: number
+  name: string
+  email: string
+  created_at: string
+};
 
-export type Image = {
-  source: String
-  resolutions: [{ url, width, height }]
-}
-
-export type Preview = {
-  enabled: Boolean
-  images: Image[] | null
-}
-
-export type Post = {
-  id: String
-  author: String
-  title: String
-  name: String
-  thumbnail: String
-  score: Number
-  down: Number
-  ups: Number
-  link: String
-  preview: Preview
-  is_video: Boolean
-  permalink: String
-  icon_url: String
-  url: String
-  num_comments: Number
-  created: Number
+export type PostT = {
+  id: string
+  author: string
+  title: string
+  name: string
+  thumbnail: string
+  score: number
+  down: number
+  ups: number
+  preview: string
+  is_video: boolean
+  permalink: string
+  icon_url: string
+  url: string
+  num_comments: number
+  created: number
 }

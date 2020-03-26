@@ -1,14 +1,14 @@
 import Base from './base'
 
 class Auth extends Base {
-  static login(email: String, password: String) {
+  static login(email: string, password: string) {
     return this.post('/api/v1/auth/login', {
       email: email,
       password: password
     });
   }
 
-  static signup(name: String, email: String, password: String) {
+  static signup(name: string, email: string, password: string) {
     return this.post('/api/v1/auth/signup', {
       user: {
         name: name,

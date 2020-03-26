@@ -1,19 +1,19 @@
 import axios from 'axios'
 
 class Base {
-  static get(path: string, params : Object = {}) { 
+  static get(path: string, params : object = {}) { 
     return axios.get(path, { headers: this.headers });
   }
 
-  static post(path: string, params : Object = {}) { 
+  static post(path: string, params : object = {}) { 
     return axios.post(path, params, { headers: this.headers });
   }
 
-  static put(path: string, params : Object = {}) { 
+  static put(path: string, params : object = {}) { 
     return axios.put(path, params, { headers: this.headers });
   }
 
-  static delete(path: string, params : Object = {}) { 
+  static delete(path: string, params : object = {}) { 
     return axios.delete(path, { headers: this.headers });
   }
 

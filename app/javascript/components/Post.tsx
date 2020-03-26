@@ -5,10 +5,11 @@ import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
 import postStore from '../stores/postStore' 
+import { PostT } from '../types'
 
 interface PostProps {
   postStore?: typeof postStore
-  post: any
+  post: PostT
 }
 
 @inject('postStore')
@@ -19,13 +20,21 @@ class Post extends React.Component<PostProps> {
     super(props);
   }
 
+  viewImage(post: PostT) {
+    console.log(post.preview);
+
+    alert(
+      decodeURI(post.preview)
+    );
+  }
+
   render() {
     const { post } = this.props;
 
     return (
       <div className="Post" bp="grid vertical-start 8--max">
         <div className="thumbnail" bp="1">
-          <img width="100" src={ this.getThumbnail(post) } />
+          <img width="100" src={ this.getThumbnail(post.thumbnail) } onClick={ () => this.viewImage(post) } />
           <small className="author">{ post.author }</small>
           <br />
           <small className="created">{ this.formatDate(post.created) }</small>
@@ -46,8 +55,8 @@ class Post extends React.Component<PostProps> {
 
   private
 
-  getThumbnail(post) {
-    switch (post.thumbnail) {
+  getThumbnail(thumbnail) {
+    switch (thumbnail) {
       case 'self':
         return 'https://www.reddit.com/static/self_default2.png';
         break;
@@ -58,14 +67,13 @@ class Post extends React.Component<PostProps> {
         return 'https://www.reddit.com/static/nsfw2.png';
         break;
       default:
-        return post.thumbnail;
+        return thumbnail;
         break;
     }
   }
 
-  formatDate(created: number) {
+  formatDate(created) {
     return moment.unix(created).format('MMMM Do YYYY');
-
   }
 }
 

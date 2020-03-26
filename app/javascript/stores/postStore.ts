@@ -1,10 +1,10 @@
 import { observable, action } from 'mobx'
-import { Post } from 'types'
+import { PostT } from 'types'
 import Posts from 'services/posts'
 
 class PostStore {
-  @observable posts: Post[] = []; 
-  @observable loading: Boolean;
+  @observable posts: PostT[] = []; 
+  @observable loading: boolean;
 
   @action loadPosts() {
     this.loading = true;
@@ -20,9 +20,10 @@ class PostStore {
 
   private
 
-  decorate(posts): Post[] {
+  decorate(posts): PostT[] {
     return posts.map((post) => {
       post = post.data;
+      const preview: null | string = post.preview && decodeURI(post.preview.images[0].source.url)
       
       return {
         id: post.id,
@@ -34,7 +35,7 @@ class PostStore {
         down: post.downs,
         ups: post.ups,
         link: post.link,
-        preview: post.preview,
+        preview: preview,
         is_video: post.is_video,
         permalink: post.permalink,
         icon_url: post.icon_url,

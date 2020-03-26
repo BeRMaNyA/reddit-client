@@ -3,19 +3,19 @@ import Auth from 'services/auth'
 import userStore from './userStore'
 
 interface Values {
-  name?: String
-  email: String
-  password: String
+  name?: string
+  email: string
+  password: string
 }
 
 interface Error {
-  error: String
+  error: string
 }
 
 class AuthStore {
-  @observable inProgress: Boolean = false;
-  @observable loggedIn: Boolean = false;
-  @observable error: String;
+  @observable inProgress: boolean = false;
+  @observable loggedIn: boolean = false;
+  @observable error: string;
 
   @observable values: Values = {
     email: '',
