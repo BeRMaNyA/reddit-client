@@ -5,18 +5,14 @@ import authStore from 'stores/authStore'
 
 import { Redirect } from 'react-router-dom'
 
-interface LogoutProps {
+interface Props {
   authStore?: typeof authStore
 }
 
 @inject('authStore')
 @observer
 
-class Logout extends React.Component<LogoutProps>{
-  constructor(props) {
-    super(props);
-  }
-
+class Logout extends React.Component<Props>{
   componentDidMount() {
     this.props.authStore.logout();
   }

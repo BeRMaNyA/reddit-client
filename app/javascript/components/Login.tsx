@@ -5,21 +5,20 @@ import { inject, observer } from 'mobx-react'
 
 import authStore from 'stores/authStore'
 
-interface LoginProps {
+interface Props {
   authStore?: typeof authStore
 }
 
 @inject('authStore')
 @observer
 
-class Login extends React.Component<LoginProps> {
+class Login extends React.Component<Props> {
   private formRef;
 
   constructor(props) {
     super(props);
 
     this.formRef = React.createRef();
-    this.login = this.login.bind(this);
   }
 
   login(event: React.FormEvent) {
@@ -30,7 +29,7 @@ class Login extends React.Component<LoginProps> {
     event.preventDefault();
   }
 
-  componentDidMount() {
+  componentWillUnmount() {
     this.props.authStore.clearError();
   }
 
@@ -42,7 +41,7 @@ class Login extends React.Component<LoginProps> {
       return <Redirect to="/" />
 
     return (
-      <form className="Form" ref={this.formRef} onSubmit={this.login} noValidate>
+      <form className="Form" ref={this.formRef} onSubmit={this.login.bind(this)} noValidate>
         <h1>Credentials</h1>
 
         { error &&

@@ -7,11 +7,11 @@ import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import { PostT } from 'types'
 
-interface ButtonState {
+interface State {
   isStored: boolean
 }
 
-interface ButtonProps {
+interface Props {
   galleryStore?: typeof galleryStore
   post: PostT
   close: Function
@@ -20,16 +20,13 @@ interface ButtonProps {
 @inject('galleryStore')
 @observer
 
-class HandleImageButton extends React.Component<ButtonProps, ButtonState> {
+class HandleImageButton extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
     this.state = {
-      isStored: this.props.galleryStore.isStored(this.props.post)
+      isStored: this.props.galleryStore.isStored(props.post)
     };
-
-    this.save = this.save.bind(this);
-    this.remove = this.remove.bind(this);
   }
 
   save() {
@@ -46,24 +43,24 @@ class HandleImageButton extends React.Component<ButtonProps, ButtonState> {
 
   render() {
     if (this.state.isStored)
-      return this.removeBtn;
+      return this.removeBtn();
     else
-      return this.saveBtn;
+      return this.saveBtn();
   }
 
   private
 
-  get saveBtn() {
+  saveBtn() {
     return (
-      <button className="SaveImageButton" onClick={this.save}>
+      <button className="SaveImageButton" onClick={this.save.bind(this)}>
         <FontAwesomeIcon icon={faSave} />
       </button>
     )
   }
 
-  get removeBtn() {
+  removeBtn() {
     return (
-      <button className="RemoveImageButton" onClick={this.remove}>
+      <button className="RemoveImageButton" onClick={this.remove.bind(this)}>
         <FontAwesomeIcon icon={faTrash} />
       </button>
     )

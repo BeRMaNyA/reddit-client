@@ -10,46 +10,16 @@ import { PostT } from 'types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
-interface PostProps {
+interface Props {
   postStore?: typeof postStore
   post: PostT
   openViewer: Function
 }
 
-@inject('postStore')
-@observer
+const Post = (props: Props) => {
+  const { post } = props;
 
-class Post extends React.Component<PostProps> {
-  viewImage(post: PostT) {
-    this.props.openViewer(post);
-  }
-
-  render() {
-    const { post } = this.props;
-
-    return (
-      <div className="Post" bp="grid vertical-start 8--max">
-        <div className="thumbnail" bp="1">
-          <img width="100" src={ this.getThumbnail(post.thumbnail) } onClick={ () => this.viewImage(post) } />
-          <small className="author">{ post.author }</small>
-          <br />
-          <small className="created">{ this.formatDate(post.created) }</small>
-        </div>
-
-        <div className="media-body" bp="10">
-          <span className="dismiss">
-            <FontAwesomeIcon icon={faTimes} />
-          </span>
-
-          <h4>{ post.title }</h4>	
-        </div>
-      </div>
-    )
-  }
-
-  private
-
-  getThumbnail(thumbnail:string) {
+  const getThumbnail = (thumbnail: string) => {
     switch (thumbnail) {
       case 'self':
         return 'https://www.reddit.com/static/self_default2.png';
@@ -60,11 +30,31 @@ class Post extends React.Component<PostProps> {
       default:
         return thumbnail;
     }
-  }
+  };
 
-  formatDate(created:number) {
+  const formatDate = (created: number) => {
     return moment.unix(created).format('MMMM Do YYYY');
-  }
+  };
+
+
+  return (
+    <div className="Post" bp="grid vertical-start 8--max">
+      <div className="thumbnail" bp="1">
+        <img width="100" src={ getThumbnail(post.thumbnail) } onClick={ () => props.openViewer(post) } />
+        <small className="author">{ post.author }</small>
+        <br />
+        <small className="created">{ formatDate(post.created) }</small>
+      </div>
+
+      <div className="media-body" bp="10">
+        <span className="dismiss">
+          <FontAwesomeIcon icon={faTimes} />
+        </span>
+
+        <h4>{ post.title }</h4>	
+      </div>
+    </div>
+  )
 }
 
-export default Post;
+export default inject('postStore')(observer(Post));

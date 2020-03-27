@@ -5,24 +5,23 @@ import { inject, observer } from 'mobx-react'
 
 import authStore from 'stores/authStore' 
 
-interface SignupProps {
+interface Props {
   authStore?: typeof authStore
 }
 
 @inject('authStore')
 @observer
 
-class Signup extends React.Component<SignupProps> {
+class Signup extends React.Component<Props> {
   private formRef;
 
   constructor(props) {
     super(props);
 
     this.formRef = React.createRef();
-    this.signup = this.signup.bind(this)
   }
 
-  componentDidMount() {
+  componentWillUnmount() {
     this.props.authStore.clearError();
   }
 
@@ -42,7 +41,7 @@ class Signup extends React.Component<SignupProps> {
       return <Redirect to="/" />
 
     return (
-      <form className="Form" ref={this.formRef} onSubmit={this.signup} noValidate>
+      <form className="Form" ref={this.formRef} onSubmit={this.signup.bind(this)} noValidate>
         <h1>Signup</h1>
 
         { error &&

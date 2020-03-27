@@ -14,13 +14,13 @@ import HandleImageButton from '../Shared/HandleImageButton'
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
-interface PostsProps {
+interface Props {
   userStore: typeof userStore
   postStore: typeof postStore
   setFixedClass: Function
 }
 
-interface PostsState {
+interface State {
   currentPost: PostT | null
   isOpen: boolean
 }
@@ -29,8 +29,8 @@ interface PostsState {
 @inject('postStore')
 @observer
 
-class Posts extends React.Component<PostsProps, PostsState> {
-  state = {
+class Posts extends React.Component<Props, State> {
+  state: Readonly<State> = {
     currentPost: null,
     isOpen: false
   }
@@ -80,7 +80,6 @@ class Posts extends React.Component<PostsProps, PostsState> {
               ]}
           />
         }
-
       </>
     )
   }
