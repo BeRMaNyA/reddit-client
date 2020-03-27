@@ -12,7 +12,7 @@ export type PostT = {
   name: string
   thumbnail: string
   score: number
-  down: number
+  downs: number
   ups: number
   preview: string
   is_video: boolean
@@ -21,4 +21,11 @@ export type PostT = {
   url: string
   num_comments: number
   created: number
+}
+
+export type Image = {
+  id: number
+  post_id: string
+  title: string
+  src: string
 }

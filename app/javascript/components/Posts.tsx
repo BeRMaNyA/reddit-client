@@ -9,7 +9,7 @@ import userStore from 'stores/userStore'
 import postStore from 'stores/postStore'
 
 import Post from './Post'
-import SaveImageButton from './SaveImageButton'
+import HandleImageButton from './HandleImageButton'
 
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
@@ -80,7 +80,7 @@ class Posts extends React.Component<PostsProps, PostsState> {
               mainSrc={decodeURI(this.state.currentPost.preview)}
               onCloseRequest={() => this.closeViewer() }
               toolbarButtons={[
-                <SaveImageButton post={this.state.currentPost} close={() => this.closeViewer() }/>
+                <HandleImageButton post={this.state.currentPost} close={() => this.closeViewer() }/>
               ]}
           />
         }

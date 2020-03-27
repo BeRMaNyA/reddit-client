@@ -32,7 +32,7 @@ class PostStore {
         title: post.title,
         thumbnail: post.thumbnail,
         score: post.score,
-        down: post.downs,
+        downs: post.downs,
         ups: post.ups,
         link: post.link,
         preview: preview,

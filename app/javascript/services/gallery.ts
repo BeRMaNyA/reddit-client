@@ -1,11 +1,12 @@
 import Base from './base'
+import { PostT } from 'types'
 
 class Gallery extends Base {
-  static loadImages() {
+  static load() {
     return this.get('/api/v1/gallery');
   }
 
-  static saveImage(post) {
+  static save(post: PostT) {
     return this.post('/api/v1/gallery', {
       image: {
         post_id: post.id,
@@ -13,6 +14,10 @@ class Gallery extends Base {
         src: post.preview
       }
     });
+  }
+
+  static remove(post: PostT) {
+    return this.delete(`/api/v1/gallery/${post.id}`);
   }
 }
 
