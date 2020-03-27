@@ -16,9 +16,7 @@ interface Props {
   openViewer: Function
 }
 
-const Post = (props: Props) => {
-  const { post } = props;
-
+function Post({ post, openViewer }: Props) {
   const getThumbnail = (thumbnail: string) => {
     switch (thumbnail) {
       case 'self':
@@ -36,11 +34,10 @@ const Post = (props: Props) => {
     return moment.unix(created).format('MMMM Do YYYY');
   };
 
-
   return (
     <div className="Post" bp="grid vertical-start 8--max">
       <div className="thumbnail" bp="1">
-        <img width="100" src={ getThumbnail(post.thumbnail) } onClick={ () => props.openViewer(post) } />
+        <img width="100" src={ getThumbnail(post.thumbnail) } onClick={ () => openViewer(post) } />
         <small className="author">{ post.author }</small>
         <br />
         <small className="created">{ formatDate(post.created) }</small>

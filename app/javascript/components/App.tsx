@@ -2,10 +2,11 @@ import * as React from 'react'
 
 import { Switch, Route, Link } from 'react-router-dom'
 
-import PrivateRoute from './PrivateRoute'
-import Header from './Layout/Header'
-import Posts from './Posts/Posts'
+import PrivateRoute from './Utils/PrivateRoute'
 
+import Header from './Layout/Header'
+
+import Posts from './Posts/Posts'
 import Login from './Login'
 import Signup from './Signup'
 import Logout from './Logout'
@@ -18,10 +19,9 @@ interface AppState {
 }
 
 class App extends React.Component<{}, AppState> {
-  constructor(props) {
-    super(props);
-    this.state = { fixedFooter: true };
-  }
+  state:Readonly<AppState> = {
+    fixedFooter: true
+  };
 
   setFixedClass(fixed: boolean) {
     this.setState({ fixedFooter: fixed });
