@@ -63,8 +63,8 @@ rails s -b 0.0.0.0
 - [x] Remove pictures 
 - [x] Implement Gallery
 - [x] Dismiss Post
-- [x] Responsive design
+- [X] Scroll Pagination
+- [ ] Open Post
 - [ ] Indicator of unread/read post
-- [ ] Pagination support
 - [ ] Dismiss All
 - [ ] Support split layout

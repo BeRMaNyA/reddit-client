@@ -5,17 +5,27 @@ import Posts from 'services/posts'
 class PostStore {
   @observable posts: PostT[] = []; 
   @observable loading: boolean;
+  @observable after: string | null = null;
 
   @action loadPosts() {
+    if (this.loading) return;
+
     this.loading = true;
 
-    return Posts.list()
-      .then((result) => {
-        this.posts = this.decorate(result.data.data.children)
-      })
-      .then(() => {
-        this.loading = false
-      });
+    const params = {
+      limit: 30,
+      raw_json: 1,
+      after: this.after
+    };
+
+    return Posts.list(params).then((result) => {
+      this.posts = this.posts.concat(
+        this.decorate(result.data.data.children)
+      );
+
+      this.after = result.data.data.after;
+    })
+    .then(() => this.loading = false);
   }
 
   @action dismiss(post) {

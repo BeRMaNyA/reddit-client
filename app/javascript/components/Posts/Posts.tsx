@@ -3,6 +3,8 @@ import * as React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
+import InfiniteScroll from 'react-infinite-scroller';
+
 import { PostT } from 'types'
 
 import userStore from 'stores/userStore' 
@@ -23,6 +25,7 @@ interface Props {
 interface State {
   currentPost: PostT | null
   isOpen: boolean
+  hasMore: boolean
 }
 
 @inject('userStore')
@@ -30,14 +33,18 @@ interface State {
 @observer
 
 class Posts extends React.Component<Props, State> {
+  private hasMore;
+
   state: Readonly<State> = {
     currentPost: null,
-    isOpen: false
+    isOpen: false,
+    hasMore: false
   }
 
   componentDidMount() {
     this.props.postStore.loadPosts().then(() => {
       this.props.setFixedClass(false);
+      this.setState({ hasMore: true });
     })
   }
 
@@ -68,10 +75,15 @@ class Posts extends React.Component<Props, State> {
         <div className="Posts">
           { postStore.loading && 'Loading Posts...' }
 
-          { postStore.posts.map((post, index) =>
-              <Post key={index} post={post} openViewer={this.openViewer.bind(this)} dismiss={this.dismiss.bind(this)} />
-            )
-          }
+          <InfiniteScroll
+              loadMore={() => postStore.loadPosts() }
+              hasMore={this.state.hasMore}
+          >
+            { postStore.posts.map((post, index) =>
+                <Post key={index} post={post} openViewer={this.openViewer.bind(this)} dismiss={this.dismiss.bind(this)} />
+              )
+            }
+          </InfiniteScroll>
         </div>
 
         { this.state.isOpen &&

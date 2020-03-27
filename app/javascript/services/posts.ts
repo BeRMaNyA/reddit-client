@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 class Posts {
-  static list(params: { limit, raw_json } = { limit: 50, raw_json: 1 }) {
+  static list(params: { limit, after, raw_json }) {
     return axios.get('https://www.reddit.com/top.json', { 
       params: params
     });
