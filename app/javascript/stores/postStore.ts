@@ -18,6 +18,10 @@ class PostStore {
       });
   }
 
+  @action dismiss(post) {
+    this.posts = this.posts.filter((p) => p !== post);
+  }
+
   private
 
   decorate(posts) {

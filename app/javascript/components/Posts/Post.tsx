@@ -4,19 +4,18 @@ import * as moment from 'moment'
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
-import postStore from 'stores/postStore' 
 import { PostT } from 'types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
-  postStore?: typeof postStore
   post: PostT
   openViewer: Function
+  dismiss: Function
 }
 
-function Post({ post, openViewer }: Props) {
+function Post({ post, openViewer, dismiss }: Props) {
   const getThumbnail = (thumbnail: string) => {
     switch (thumbnail) {
       case 'self':
@@ -44,9 +43,9 @@ function Post({ post, openViewer }: Props) {
       </div>
 
       <div className="media-body" bp="10">
-        <span className="dismiss">
+        <a className="dismiss" onClick={ () => dismiss(post) }>
           <FontAwesomeIcon icon={faTimes} />
-        </span>
+        </a>
 
         <h4>{ post.title }</h4>	
       </div>
@@ -54,4 +53,4 @@ function Post({ post, openViewer }: Props) {
   )
 }
 
-export default inject('postStore')(observer(Post));
+export default Post;

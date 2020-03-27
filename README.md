@@ -59,12 +59,12 @@ rails s -b 0.0.0.0
 - [x] Logout
 - [x] List TOP POSTs
 - [x] Open Image Full Size
-- [ ] Show TOP POST
-- [x] Saving pictures in the picture gallery
+- [x] Save pictures
+- [x] Remove pictures 
 - [x] Implement Gallery
-- [ ] Pagination support
+- [x] Dismiss Post
+- [x] Responsive design
 - [ ] Indicator of unread/read post
-- [ ] Dismiss Post
+- [ ] Pagination support
 - [ ] Dismiss All
 - [ ] Support split layout
-- [x] Responsive design

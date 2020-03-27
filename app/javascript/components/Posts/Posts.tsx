@@ -56,6 +56,10 @@ class Posts extends React.Component<Props, State> {
     this.setState({ isOpen: false });
   }
 
+  dismiss(post: PostT) {
+    this.props.postStore.dismiss(post);
+  }
+
   render() {
     const { userStore, postStore } = this.props;
 
@@ -65,7 +69,7 @@ class Posts extends React.Component<Props, State> {
           { postStore.loading && 'Loading Posts...' }
 
           { postStore.posts.map((post, index) =>
-              <Post key={index} post={post} openViewer={this.openViewer.bind(this)} />
+              <Post key={index} post={post} openViewer={this.openViewer.bind(this)} dismiss={this.dismiss.bind(this)} />
             )
           }
         </div>
