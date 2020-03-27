@@ -9,25 +9,29 @@ class GalleryStore {
   @observable loading: boolean;
 
   constructor() {
-    Gallery.load().then((result) => {
-      this.images = result.data;
-    });
+    Gallery.load().then((result) =>
+      this.images = result.data
+    );
   }
 
-  @action save(post: PostT) {
-    return Gallery.save(post).then((result) => {
-      this.images.push(result.data);
-    });
+  @action save(post_id: string, title: string, src: string) {
+    return Gallery.save(post_id, title, src).then((result) =>
+      this.images.unshift(result.data)
+    );
   }
 
-  @action remove(post: PostT) {
-    return Gallery.remove(post).then((result) => {
-      this.images = result.data;
-    });
+  @action remove(post_id: string) {
+    return Gallery.remove(post_id).then(() =>
+      this.images = this.images.filter((image) => image.post_id != post_id)
+    );
   }
 
-  isStored = computedFn(function isStored(post: PostT) {
-    return this.images.find((img) => img.post_id == post.id);
+  isStored = computedFn(function isStored(post_id: string) {
+    return this.images.find((img) => img.post_id == post_id);
+  });
+
+  findIndex = computedFn(function findIndex(image: Image) {
+    return this.images.findIndex((img) => img.post_id == image.post_id);
   });
 }
 

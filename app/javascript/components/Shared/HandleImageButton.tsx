@@ -5,7 +5,7 @@ import galleryStore from 'stores/galleryStore'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { PostT } from 'types'
+import { PostT, Image } from 'types'
 
 interface State {
   isStored: boolean
@@ -13,8 +13,8 @@ interface State {
 
 interface Props {
   galleryStore?: typeof galleryStore
-  post: PostT
-  close: Function
+  post?: PostT
+  image?: Image
 }
 
 @inject('galleryStore')
@@ -24,21 +24,32 @@ class HandleImageButton extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
+    const postId = props.post ? props.post.id : props.image.post_id;
+
     this.state = {
-      isStored: this.props.galleryStore.isStored(props.post)
+      isStored: this.props.galleryStore.isStored(postId)
     };
   }
 
   save() {
-    this.props.galleryStore.save(this.props.post).then(() => {
-      this.setState({ isStored: true });
-    })
+    const { image, post } = this.props;
+
+    const id    = post ? post.id      : image.post_id,
+          title = post ? post.title   : image.title,
+          src   = post ? post.preview : image.src;
+
+    this.props.galleryStore.save(id, title, src).then(() =>
+      this.setState({ isStored: true })
+    );
   }
 
   remove() {
-    this.props.galleryStore.remove(this.props.post).then(() => {
-      this.setState({ isStored: false });
-    })
+    const { image, post } = this.props;
+    const id = post ? post.id : image.post_id;
+
+    this.props.galleryStore.remove(id).then(() =>
+      this.setState({ isStored: false })
+    );
   }
 
   render() {

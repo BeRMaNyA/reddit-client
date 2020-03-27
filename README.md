@@ -58,10 +58,11 @@ rails s -b 0.0.0.0
 - [x] Sign In
 - [x] Logout
 - [x] List TOP POSTs
-- [ ] Pagination support
 - [x] Open Image Full Size
 - [ ] Show TOP POST
-- [ ] Saving pictures in the picture gallery
+- [x] Saving pictures in the picture gallery
+- [x] Implement Gallery
+- [ ] Pagination support
 - [ ] Indicator of unread/read post
 - [ ] Dismiss Post
 - [ ] Dismiss All

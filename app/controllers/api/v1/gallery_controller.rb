@@ -15,15 +15,18 @@ class Api::V1::GalleryController < Api::ApiController
   #
   def destroy
     image = current_user.images.find_by_post_id(params[:id])
-    image&.destroy
 
-    render json: images
+    return render json: { error: 'Image not found' }, status: 404 unless image
+
+    image.destroy
+
+    render json: image
   end
 
   private
 
   def images
-    current_user.images.map(&:to_h)
+    current_user.images.order(created_at: :desc).map(&:to_h)
   end
 
   def gallery_params

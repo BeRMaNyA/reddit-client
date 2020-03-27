@@ -58,7 +58,6 @@ class Posts extends React.Component<Props, State> {
 
   render() {
     const { userStore, postStore } = this.props;
-    const { currentUser } = userStore;
 
     return (
       <>
@@ -76,7 +75,7 @@ class Posts extends React.Component<Props, State> {
               mainSrc={decodeURI(this.state.currentPost.preview)}
               onCloseRequest={() => this.closeViewer() }
               toolbarButtons={[
-                <HandleImageButton post={this.state.currentPost} close={() => this.closeViewer() }/>
+                <HandleImageButton post={this.state.currentPost} />
               ]}
           />
         }

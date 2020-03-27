@@ -144,6 +144,15 @@ input {
   color: $red;
 }
 
+.Gallery {
+  margin-bottom: 45px;
+  padding: 15px 0 0 15px;
+
+  img {
+    width: 90%;
+  }
+}
+
 footer {
   background: #333;
   padding: 20px;
@@ -155,5 +164,4 @@ footer {
   &.fixed {
     position: fixed;
   }
-
 }
