@@ -9,7 +9,7 @@ import userStore from 'stores/userStore'
 import postStore from 'stores/postStore'
 
 import Post from './Post'
-import HandleImageButton from './HandleImageButton'
+import HandleImageButton from '../Shared/HandleImageButton'
 
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
@@ -30,13 +30,9 @@ interface PostsState {
 @observer
 
 class Posts extends React.Component<PostsProps, PostsState> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentPost: null,
-      isOpen: false
-    }
+  state = {
+    currentPost: null,
+    isOpen: false
   }
 
   componentDidMount() {

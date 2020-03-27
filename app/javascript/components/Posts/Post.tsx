@@ -20,10 +20,6 @@ interface PostProps {
 @observer
 
 class Post extends React.Component<PostProps> {
-  constructor(props) {
-    super(props);
-  }
-
   viewImage(post: PostT) {
     this.props.openViewer(post);
   }

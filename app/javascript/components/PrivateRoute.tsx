@@ -6,22 +6,13 @@ import { inject, observer } from 'mobx-react'
 import userStore from '../stores/userStore'
 import { RouteProps } from 'react-router';
 
-@inject('userStore')
-@observer
+function PrivateRoute(props: RouteProps ) {
+  const { userStore, component:Component, ...restProps } = props;
 
-class PrivateRoute extends React.Component<RouteProps> {
-  constructor(props) {
-    super(props);
-  }
+  if (userStore.currentUser)
+    return <Route render={(props) => <Component {...restProps} />} />;
 
-  render() {
-    const { userStore, component:Component, ...restProps } = this.props;
-
-    if (userStore.currentUser)
-      return <Route render={(props) => <Component {...restProps} />} />;
-
-    return <Redirect to="/login" />
-  }
+  return <Redirect to="/login" />
 }
 
-export default PrivateRoute;
+export default inject('userStore')(observer(PrivateRoute));
