@@ -25,7 +25,7 @@ class Post extends React.Component<PostProps> {
   }
 
   viewImage(post: PostT) {
-    this.props.openViewer(decodeURI(post.preview));
+    this.props.openViewer(post);
   }
 
   render() {
@@ -53,7 +53,7 @@ class Post extends React.Component<PostProps> {
 
   private
 
-  getThumbnail(thumbnail) {
+  getThumbnail(thumbnail:string) {
     switch (thumbnail) {
       case 'self':
         return 'https://www.reddit.com/static/self_default2.png';
@@ -66,7 +66,7 @@ class Post extends React.Component<PostProps> {
     }
   }
 
-  formatDate(created) {
+  formatDate(created:number) {
     return moment.unix(created).format('MMMM Do YYYY');
   }
 }

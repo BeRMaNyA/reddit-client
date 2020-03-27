@@ -20,7 +20,7 @@ class PostStore {
 
   private
 
-  decorate(posts): PostT[] {
+  decorate(posts) {
     return posts.map((post) => {
       post = post.data;
       const preview: null | string = post.preview && decodeURI(post.preview.images[0].source.url)

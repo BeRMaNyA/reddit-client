@@ -9,6 +9,8 @@ Rails.application.routes.draw do
         post :signup
         delete :logout
       end
+
+      resources :gallery, except: :update
     end
   end
 

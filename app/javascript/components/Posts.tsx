@@ -3,10 +3,13 @@ import * as React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 
+import { PostT } from 'types'
+
 import userStore from 'stores/userStore' 
 import postStore from 'stores/postStore'
 
 import Post from './Post'
+import SaveImageButton from './SaveImageButton'
 
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
@@ -18,7 +21,7 @@ interface PostsProps {
 }
 
 interface PostsState {
-  imgSrc: string | null
+  currentPost: PostT | null
   isOpen: boolean
 }
 
@@ -31,7 +34,7 @@ class Posts extends React.Component<PostsProps, PostsState> {
     super(props);
 
     this.state = {
-      imgSrc: null,
+      currentPost: null,
       isOpen: false
     }
   }
@@ -46,15 +49,15 @@ class Posts extends React.Component<PostsProps, PostsState> {
     this.props.setFixedClass(true);
   }
 
-  openViewer(img: string) {
+  openViewer(post: PostT) {
     this.setState({
-      imgSrc: img,
+      currentPost: post,
       isOpen: true
     })
   }
 
   closeViewer() {
-    this.setState({ isOpen: false })
+    this.setState({ isOpen: false });
   }
 
   render() {
@@ -74,8 +77,11 @@ class Posts extends React.Component<PostsProps, PostsState> {
 
         { this.state.isOpen &&
           <Lightbox
-              mainSrc={this.state.imgSrc}
+              mainSrc={decodeURI(this.state.currentPost.preview)}
               onCloseRequest={() => this.closeViewer() }
+              toolbarButtons={[
+                <SaveImageButton post={this.state.currentPost} close={() => this.closeViewer() }/>
+              ]}
           />
         }
 
