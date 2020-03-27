@@ -27,8 +27,8 @@ class GalleryStore {
   }
 
   isStored = computedFn(function isStored(post: PostT) {
-    return this.images.find((img) => img.post_id == post.id)
-  })
+    return this.images.find((img) => img.post_id == post.id);
+  });
 }
 
 export default new GalleryStore();
