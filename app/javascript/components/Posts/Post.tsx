@@ -13,9 +13,10 @@ interface Props {
   post: PostT
   openViewer: Function
   dismiss: Function
+  read: Function
 }
 
-function Post({ post, openViewer, dismiss }: Props) {
+function Post({ post, openViewer, dismiss, read }: Props) {
   const getThumbnail = (thumbnail: string) => {
     switch (thumbnail) {
       case 'self':
@@ -47,7 +48,7 @@ function Post({ post, openViewer, dismiss }: Props) {
           <FontAwesomeIcon icon={faTimes} />
         </a>
 
-        <h4>{ post.title }</h4>	
+        <h4 onClick={() => read(post) }>{ post.title }</h4>	
       </div>
     </div>
   )

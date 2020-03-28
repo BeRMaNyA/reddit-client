@@ -48,7 +48,6 @@ class PostStore {
         score: post.score,
         downs: post.downs,
         ups: post.ups,
-        link: post.link,
         preview: preview,
         is_video: post.is_video,
         permalink: post.permalink,
