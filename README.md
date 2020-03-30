@@ -1,6 +1,8 @@
 # REDDIT TOP POSTS
 
-A reddit client built with React & Ruby on Rails
+A reddit client built with React & Ruby on Rails.
+
+Check the **[demo here](https://reddit-client-bc.herokuapp.com/)**...
 
 ## Table of Contents
 
@@ -64,7 +66,7 @@ rails s -b 0.0.0.0
 - [x] Implement Gallery
 - [x] Dismiss Post
 - [X] Scroll Pagination
-- [ ] Open Post
+- [X] Open Post
 - [ ] Indicator of unread/read post
 - [ ] Dismiss All
 - [ ] Support split layout
