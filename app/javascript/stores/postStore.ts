@@ -28,8 +28,16 @@ class PostStore {
     .then(() => this.loading = false);
   }
 
-  @action dismiss(post) {
-    this.posts = this.posts.filter((p) => p !== post);
+  @action dismiss(post: PostT) {
+    post.hidden = true
+
+    const i: number = this.posts.findIndex((p) => p === post);
+
+    this.posts.splice(i, 1, post);
+
+    setTimeout(() => {
+      this.posts.splice(i, 1);
+    }, 500)
   }
 
   private

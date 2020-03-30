@@ -21,6 +21,7 @@ export type PostT = {
   url: string
   num_comments: number
   created: number
+  hidden: boolean
 }
 
 export type Image = {

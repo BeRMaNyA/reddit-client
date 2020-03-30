@@ -14,6 +14,8 @@ import Post from './Post'
 import PostViewer from './PostViewer'
 import HandleImageButton from '../Shared/HandleImageButton'
 
+import { Animated } from "react-animated-css";
+
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
 
@@ -36,7 +38,7 @@ interface State {
 
 class Posts extends React.Component<Props, State> {
   private hasMore;
-
+  
   state: Readonly<State> = {
     currentPost: null,
     postImage: null,
@@ -94,12 +96,14 @@ class Posts extends React.Component<Props, State> {
               hasMore={this.state.hasMore}
           >
             { postStore.posts.map((post, index) =>
-                <Post key={index}
-                      post={post} 
-                      openViewer={this.openViewer.bind(this)}
-                      dismiss={this.dismiss.bind(this)}
-                      read={this.read.bind(this)}
-                />
+                <Animated animationIn={null} animationOut="fadeOutUp" isVisible={!post.hidden} >
+                  <Post key={index}
+                        post={post} 
+                        openViewer={this.openViewer.bind(this)}
+                        dismiss={this.dismiss.bind(this)}
+                        read={this.read.bind(this)}
+                  />
+                </Animated>
              )}
           </InfiniteScroll>
         </div>
